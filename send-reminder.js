@@ -16,7 +16,7 @@ const dataArray = rsvpData.data[dataIndex];
 
 dataArray.forEach(el => {
   client.messages.create({
-    to: el.sender,
+    to: el,
     from: twilioPhoneNumber,
     body: 'Reminder from Hutson: The Hutson Planter Clinic is tomorrow at the ' + location + ' starting at ' + startTime + '. We look forward to seeing you there!',
   }).then((message) => console.log('Message sent. SID: ' + message.sid));
