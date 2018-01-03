@@ -1,16 +1,18 @@
 require('dotenv').config();
-var reminderData = require('./data/murray.json');
 
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN;
 const twilioPhoneNumber = process.env.TWILIO_PHONE_NUMBER;
 
 var client = require('twilio')(accountSid, authToken);
-var location = 'Bill Cherry Expo Center',
-    startTime = '8:00 am';
 
-const dataArray = reminderData.data;
-//console.log(accountSid);
+var rsvpData = require('./data/rsvp-data.json');
+
+var location = 'Bill Cherry Expo Center',
+    startTime = '8:00 am',
+    dataIndex = 0;
+
+const dataArray = rsvpData.data[dataIndex];
 
 dataArray.forEach(el => {
   client.messages.create({
