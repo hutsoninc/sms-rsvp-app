@@ -2,6 +2,8 @@ const twilio = require('twilio');
 const MessagingResponse = twilio.twiml.MessagingResponse;
 const fs = require('fs');
 
+var rsvpData = require('../data/rsvp-data.json');
+
 exports.create = function(request, response){
   
   const sender = request.body.From;
@@ -39,23 +41,16 @@ exports.create = function(request, response){
 };
 
 function createResponse(location, locationDescription, startTime){
-  return 'Thank you for your RSVP to the Huston Spring Clinic at ' + location + '. The event will be at the ' + locationDescription + ' starting at ' + startTime + '. We will send a text reminder to this number the day before the event.';
+  return 'Thank you for your RSVP to the Huston Spring Clinic at ' + location + '. The event will be at the ' + locationDescription + ' starting at ' + startTime + '. We will send a text reminder to this number before the event.';
 }
 
 function saveData(sender, body){
-  var csvFormat = sender + ',' + body + '\r\n';
-  var jsonFormat = {sender: sender, body: body};
 
-  console.log('sender: ' + sender);
-  console.log('body: ' + body);
+  rsvpData.data[body - 1].push(sender);
 
-  fs.appendFile('reqData.csv', csvFormat, (err) => {
+  fs.writeFile('data/rsvp-data.json', JSON.stringify(rsvpData), (err) => {
     if (err) throw err;
-    console.log('The data was appended to reqData.csv.');
+    console.log('The data was saved.');
   });
 
-  fs.appendFile('reqData.json', (JSON.stringify(jsonFormat) + ','), (err) => {
-    if (err) throw err;
-    console.log('The data was appended to reqData.json.');
-  });
 }
