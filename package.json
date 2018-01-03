@@ -1,18 +1,25 @@
 {
-  "name": "sms-app",
+  "name": "sms-rsvp-app",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "RSVP app for Hutson Spring Clinics",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/hutsoninc/sms-rsvp-app"
+  },
+  "author": {
+    "name": "Austin Gordon",
+    "email": "agordon@hutsoninc.com",
+    "url": "https://github.com/AustinLeeGordon"
+  },
+  "license": "MIT",
   "dependencies": {
     "body-parser": "^1.18.2",
     "dotenv": "^4.0.0",
     "express": "^4.16.2",
-    "twilio": "^3.10.1",
-    "xmlhttprequest": "^1.8.0"
+    "twilio": "^3.10.1"
   }
 }
