@@ -7,4 +7,4 @@ var reminder = require('./reminders.js');
 
 var locationNumber = 1;
 
-reminders.send(locationNumber);
+reminder.send(locationNumber);
