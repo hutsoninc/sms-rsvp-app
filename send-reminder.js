@@ -10,6 +10,7 @@ var rsvpData = require('./data/rsvp-data.json');
 
 var location = 'Bill Cherry Expo Center',
     startTime = '8:00 am',
+    eventDate = 'January 23rd',
     dataIndex = 0;
 
 const dataArray = rsvpData.data[dataIndex];
@@ -18,6 +19,6 @@ dataArray.forEach(el => {
   client.messages.create({
     to: el,
     from: twilioPhoneNumber,
-    body: 'Reminder from Hutson: The Hutson Planter Clinic is tomorrow at the ' + location + ' starting at ' + startTime + '. We look forward to seeing you there!',
+    body: 'Reminder from Hutson: The Hutson Planter Clinic is ' + eventDate + ' at the ' + location + ' starting at ' + startTime + '. We look forward to seeing you there!',
   }).then((message) => console.log('Message sent. SID: ' + message.sid));
 });
