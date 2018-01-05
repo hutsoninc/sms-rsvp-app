@@ -48,11 +48,18 @@ function createResponse(location, locationDescription, startTime, eventDate){
 
 function saveData(sender, body){
 
+  var csvFormat = sender + ',' + body + '\r\n';
+  
   rsvpData.data[body - 1].push(sender);
 
   fs.writeFile('data/rsvp-data.json', JSON.stringify(rsvpData), (err) => {
     if (err) throw err;
-    console.log('The data was saved.');
+    console.log('The JSON data was saved.');
+  });
+
+  fs.appendFile('data/rsvp-data.csv', csvFormat, (err) => {
+    if (err) throw err;
+    console.log('The CSV data was saved.');
   });
 
 }
