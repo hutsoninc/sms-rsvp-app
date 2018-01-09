@@ -85,10 +85,11 @@ exports.process = function(request, response){
           entryData.location = 1;
           entryData.stage = 2;
 
-          // save data to local variable
+          // save location data to local variable
           saveLocationData(sender, 1);
 
           // save data to file
+          saveDataLocally();
           saveData();
 
           responseMessage = guestCountResponse;
@@ -102,7 +103,8 @@ exports.process = function(request, response){
           // save data to local variable
           saveLocationData(sender, 2);
 
-          // save data to file
+          // save location data to file
+          saveDataLocally();
           saveData();
 
           responseMessage = guestCountResponse;
@@ -113,10 +115,11 @@ exports.process = function(request, response){
           entryData.location = 3;
           entryData.stage = 2;
 
-          // save data to local variable
+          // save location data to local variable
           saveLocationData(sender, 3);
 
           // save data to file
+          saveDataLocally();
           saveData();
 
           responseMessage = guestCountResponse;
@@ -127,10 +130,11 @@ exports.process = function(request, response){
           entryData.location = 4;
           entryData.stage = 2;
 
-          // save data to local variable
+          // save location data to local variable
           saveLocationData(sender, 4);
 
           // save data to file
+          saveDataLocally();
           saveData();
 
           responseMessage = guestCountResponse;
@@ -153,6 +157,7 @@ exports.process = function(request, response){
           entryData.stage = 3;
 
           // save data to file
+          saveDataLocally();
           saveData();
 
           responseMessage = createThanksResponse();
@@ -251,15 +256,15 @@ exports.process = function(request, response){
     rsvpData.data[locationNum].push(phoneNum);
   
   }
+
+  function saveDataLocally(){
+
+    // update entry in local variable
+    rsvpData.data[entryDataIndex] = entryData;
+
+  }
   
   function saveData(){
-  
-    if(entryDataIndex){
-  
-      // update entry in local variable
-      rsvpData.data[entryDataIndex] = entryData;
-  
-    }
   
     // write updated data to file
     fs.writeFile('data/rsvp-data.json', JSON.stringify(rsvpData), (err) => {
