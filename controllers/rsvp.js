@@ -147,7 +147,7 @@ exports.process = function(request, response){
       }else if(entryData.stage == 2){
         // asked for number of people
 
-        if(typeof body == 'number'){
+        if(typeof parseInt(body) == 'number'){
 
           // save guest count
           entryData.guestCount = body;
