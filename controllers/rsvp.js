@@ -144,7 +144,7 @@ exports.process = function(request, response){
         }
         
 
-      }else if(stage == 2){
+      }else if(entryData.stage == 2){
         // asked for number of people
 
         if(typeof body == 'number'){
