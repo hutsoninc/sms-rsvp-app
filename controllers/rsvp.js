@@ -149,7 +149,7 @@ exports.process = function(request, response){
         if(typeof parseInt(body) == 'number'){
 
           // save guest count
-          entryData.guestCount = body;
+          entryData.guestCount = parseInt(body);
           entryData.stage = 3;
 
           // save data to file
