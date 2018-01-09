@@ -195,79 +195,80 @@ exports.process = function(request, response){
 
   response.writeHead(200, {'Content-Type': 'text/xml'});
   response.end(twiml.toString());
+
+  function findEntry(){
+
+    rsvpData.data[0].forEach((element, index) => {
+  
+      if(sender == element.sender){
+  
+        entryData = element;
+        entryDataIndex = index;
+        entryFound = true;
+  
+      }
+  
+    });
+  
+  }
+
+  function createThanksResponse(){
+
+    var resLocation, resEventData, resLocationDescription;
+    var resStartTime = '8:00 am';
+  
+    if(entryData.location == 1){
+  
+      resLocation = 'Bill Cherry Expo Center';
+      resLocationDescription = '2101 College Farm Road, Murray, KY 42071';
+      resEventData = 'January 23rd';
+  
+    }else if(entryData.location == 2){
+  
+      resLocation = 'James Bruce Convention Center';
+      resLocationDescription = '303 Conference Center Drive, Hopkinsville, KY 42240';
+      resEventData = 'January 25th';
+  
+    }else if(entryData.location == 3){
+  
+      resLocation = 'Morganfield Hutson Store';
+      resLocationDescription = '1540 State Route 130 S., Morganfield, KY 42437';
+      resEventData = 'January 30th';
+  
+    }else if(entryData.location == 4){
+  
+      resLocation = 'Vanderburgh 4-H Center';
+      resLocationDescription = '201 E. Booneville-New Harmony Road, Evansville, IN 47725';
+      resEventData = 'February 1st';
+  
+    }
+  
+    return 'Thank you for your RSVP to the Huston Spring Clinic at ' + resLocation + '. The event will be on ' + resEventData + ' at the ' + resLocationDescription + ' starting at ' + resStartTime + '. We will send a text reminder to this number before the event.';
+  
+  }
+  
+  function saveLocationData(phoneNum, locationNum){
+    
+    rsvpData.data[locationNum].push(phoneNum);
+  
+  }
+  
+  function saveData(){
+  
+    if(entryDataIndex){
+  
+      // update entry in local variable
+      rsvpData.data[entryDataIndex] = entryData;
+  
+    }
+  
+    // write updated data to file
+    fs.writeFile('data/rsvp-data.json', JSON.stringify(rsvpData), (err) => {
+      if (err) throw err;
+      console.log('The JSON data was saved.');
+    });
+  
+  }
   
 };
 
-function findEntry(){
-
-  rsvpData.data[0].forEach((element, index) => {
-
-    if(sender == element.sender){
-
-      entryData = element;
-      entryDataIndex = index;
-      entryFound = true;
-
-    }
-
-  });
-
-}
-
-function createThanksResponse(){
-
-  var resLocation, resEventData, resLocationDescription;
-  var resStartTime = '8:00 am';
-
-  if(entryData.location == 1){
-
-    resLocation = 'Bill Cherry Expo Center';
-    resLocationDescription = '2101 College Farm Road, Murray, KY 42071';
-    resEventData = 'January 23rd';
-
-  }else if(entryData.location == 2){
-
-    resLocation = 'James Bruce Convention Center';
-    resLocationDescription = '303 Conference Center Drive, Hopkinsville, KY 42240';
-    resEventData = 'January 25th';
-
-  }else if(entryData.location == 3){
-
-    resLocation = 'Morganfield Hutson Store';
-    resLocationDescription = '1540 State Route 130 S., Morganfield, KY 42437';
-    resEventData = 'January 30th';
-
-  }else if(entryData.location == 4){
-
-    resLocation = 'Vanderburgh 4-H Center';
-    resLocationDescription = '201 E. Booneville-New Harmony Road, Evansville, IN 47725';
-    resEventData = 'February 1st';
-
-  }
-
-  return 'Thank you for your RSVP to the Huston Spring Clinic at ' + resLocation + '. The event will be on ' + resEventData + ' at the ' + resLocationDescription + ' starting at ' + resStartTime + '. We will send a text reminder to this number before the event.';
-
-}
-
-function saveLocationData(phoneNum, locationNum){
-  
-  rsvpData.data[locationNum].push(phoneNum);
-
-}
-
-function saveData(){
-
-  if(entryDataIndex){
-
-    // update entry in local variable
-    rsvpData.data[entryDataIndex] = entryData;
-
-  }
-
-  // write updated data to file
-  fs.writeFile('data/rsvp-data.json', JSON.stringify(rsvpData), (err) => {
-    if (err) throw err;
-    console.log('The JSON data was saved.');
-  });
-
-}
