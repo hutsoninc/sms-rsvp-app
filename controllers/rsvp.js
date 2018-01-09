@@ -260,7 +260,7 @@ exports.process = function(request, response){
   function saveDataLocally(){
 
     // update entry in local variable
-    rsvpData.data[entryDataIndex] = entryData;
+    rsvpData.data[0][entryDataIndex] = entryData;
 
   }
   
