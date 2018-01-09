@@ -11,15 +11,14 @@ exports.process = function(request, response){
   var responseMessage, entryData, entryDataIndex, entryFound;
 
   var locationResponse = "To RSVP for an upcoming clinic, please respond with a " + 
-                         "'1' for Murray, KY (Jan. 23rd, 2018 at the Bill Murray Expo Center); " + 
-                         "'2' for Hopkinsville (Jan. 25th, 2018 at the James Bruce Convention Center); " + 
-                         "'3' for Morganfield (Jan. 30th, 2018 at the Morganfield Hutson Store); or " + 
-                         "'4' for Evansville (Feb. 1st, 2018 at the Vanderburgh 4-H Center).";
+                         "'1' for Murray, KY (1/23/2018 at the Bill Murray Expo Center); " + 
+                         "'2' for Hopkinsville, KY (1/25/2018 at the James Bruce Convention Center); " + 
+                         "'3' for Morganfield, KY (1/30/2018 at the Morganfield Hutson Store); or " + 
+                         "'4' for Evansville, IN (2/1/2018 at the Vanderburgh 4-H Center).";
 
   var guestCountResponse = "Please let us know how many people you are bringing (including yourself). " + 
                            "This will ensure that we order enough food for all of our guests. " + 
-                           "You can send an estimate or respond later if you don't have a count at this time. " + 
-                           "Please respond only with a number.";
+                           "Please respond with a number.";
 
   console.log("Sender: " + sender + ", Body: " + body);
   
