@@ -247,7 +247,7 @@ exports.process = function(request, response){
   
     }
   
-    return 'Thank you for your RSVP to the Huston Spring Clinic at ' + resLocation + '. The event will be on ' + resEventData + ' at the ' + resLocationDescription + ' starting at ' + resStartTime + '. We will send a text reminder to this number before the event.';
+    return 'Thank you for your RSVP to the Hutson Spring Clinic at ' + resLocation + '. The event will be on ' + resEventData + ' at the ' + resLocationDescription + ' starting at ' + resStartTime + '. We will send a text reminder to this number before the event.';
   
   }
   
